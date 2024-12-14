@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
@@ -11,20 +13,21 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Games API", version="1.0.0")
 
-origins = ["*"]
+origins = ["*"]#os.getenv("CORS_ORIGINS", "").split(",")
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # разрешаем все домены
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # разрешаем все методы
+    allow_headers=["*"],  # разрешаем все заголовки
 )
 
 app.include_router(games.router, prefix="/api/v1/games",)
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run(app, host="127.0.0.1", port=8000, reload=True,redirect=False)
 
 
 
