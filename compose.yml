@@ -6,8 +6,8 @@ services:
     image: nginx
     container_name: game_store_nginx
     volumes:
-      # - './nginx.conf:/conf'
-      - './nginx.conf:/etc/nginx/conf.d'
+      - ./nginx.conf/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./data/photos:/usr/share/nginx/html/photos:ro
     depends_on:
       - app
     ports:
@@ -43,7 +43,7 @@ services:
     ports:
       - ${POSTGRES_DB_HOST_PORT}:5432
     volumes:
-      - .postgres:/var/lib/postgres/data
+      - ./postgres-data:/var/lib/postgresql/data
     restart: always
     networks:
       - dev

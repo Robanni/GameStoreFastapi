@@ -8,7 +8,6 @@ load_dotenv()
 
 
 DATABASE_URL = f"postgresql://{os.getenv('POSTGRES_DB_USER')}:{os.getenv('POSTGRES_DB_PASSWORD')}@db:5432/database"
-# DATABASE_URL = f"postgresql://nfagames:123@localhost:5432/nfagames"
 
 
 
