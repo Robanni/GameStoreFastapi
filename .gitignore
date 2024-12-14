@@ -7,6 +7,9 @@ __pycache__/
 *.so
 .postgres
 postgres-data/
+*.sql
+*.jpg
+
 # Distribution / packaging
 .Python
 build/
